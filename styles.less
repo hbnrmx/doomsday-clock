@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'DSEG7 Classic';
+	src: url('DSEG7Classic-Bold.woff') format('woff');
+}
+
+.red1 {
+	transition: color 1.5s linear;
+	color: #ecb023;
+}
+.red2 {
+	color: #ec8b23;
+}
+.red3 {
+	color: #ed6724;
+}
+.red4 {
+	color: #ed4224;
+}
+.red5 {
+	color: #ed1d24;
+}
+.red6 {
+	color: #ed1d24;
+}
+.green {
+	transition: color 0s linear;
+	color: #22ec25;
+}
+
+html {
+	height: 100%;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+
+	body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		margin: 0;
+
+		#scene{
+			width: 100%;
+			height:100%;
+			z-index: -1;
+			position: relative;
+
+			.bg{
+				position: absolute;
+				top:-5% !important;
+				left:-5% !important;
+				background: url("img/bg.jpg") no-repeat center center;
+				width: 110%;
+				height: 110%;
+				background-size: cover;
+			}
+		}
+		.bar{
+			height: 200px;
+			width: 100%;
+			background-color: rgba(0,0,0, 0.6);
+
+			.clock{
+				opacity: 1;
+				display: flex;
+				max-width: 100vw;
+				font-family: 'DSEG7 Classic';
+				font-size: 30px;
+				margin: 0;
+				color: white;
+				text-shadow: 5px 5px black;
+				
+				.big {
+					font-size: 100px;
+				}
+				.medium {
+					font-size: 50px;
+				}
+			}
+		}
+		
+	}
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+.harold {
+	opacity: 0;
+	transition: opacity 0.5s ease-in;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.visible {
+	opacity: 1;
+}
+
+.bottom {
+	margin-top:400px;
+	height: 140px !important;
+}
+
+@media screen and (max-width: 630px){
+	.sidebar{
+		overflow-x: scroll;
+	}
+}
