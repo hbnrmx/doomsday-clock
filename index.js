@@ -2,7 +2,7 @@ $(document).ready(function(){
     var then = moment('2025-01-01 00:00:00');
     var now;
     var timeLeft;
-    var addedYears;
+    var addedSoFar;
     
     initParallax();
     initKeydownListener();
@@ -18,18 +18,41 @@ $(document).ready(function(){
     function initKeydownListener(){
         $(document).on('keydown',function(e) {
             if(e.key === "Enter" ) {
-                add1Year();
-                showSuccessImage();
-                playAudio();
-                var audio = new Audio('yoshi-tongue.mp3');
-                audio.play();
+                playAudio('sfx/drumroll.mp3')
+                showImage(Math.random() > 0.5 ? '.drumroll' : '.drumroll2')
+                setTimeout(() => {
+                    if(Math.random() > 0.25){
+                        console.log();
+                        playAudio(null, success = true);
+                        showImage(null, success = true);
+                        addYears(null, success = true);
+                    }
+                    else{
+                        playAudio(null, success = false);
+                        showImage(null, success= false);
+                        addYears(null, success = false)
+                    }
+                }, 4400)
             }
             if(e.key === "Escape" ) {
-                remove1Year();
-                var audio = new Audio('bruh.mp3');
-                audio.play();
+                addYears(-1);
+                playAudio('sfx/bad/bruh.mp3');
+                showImage('.bruh');
+            }  
+
+            if(e.key === "ArrowUp" ) {
+                addYears(1);
+            }  
+
+            if(e.key === "ArrowDown" ) {
+                addYears(-1);
             }
-            console.log(e.which)
+
+            if(e.key === "P" ) {
+                playAudio('sfx/priceIsRight.mp3')
+            }
+            
+
         });
     }
     
@@ -46,62 +69,111 @@ $(document).ready(function(){
             $(".seconds")[0].innerHTML= `${timeLeft.seconds()}`;                                   
         },150)
     
-        addedYears = 0;
-        $(".add")[0].innerHTML= `+${addedYears}`;
+        addedSoFar = 0;
+        $(".add")[0].innerHTML= ` ${addedSoFar} `;
     }
 
-    function add1Year(){
-        then = then.add(1, 'years');
-        $(".add")[0].innerHTML= `+${++addedYears}`;
-        $(".years").addClass("green");
-        setTimeout(() =>{$(".years").removeClass("green");}, 2000)
-    
+    function addYears(years, success){
+        if(!years){
+            years = Math.ceil(Math.random() * (success ? 10 : -10));
+        }
+        
+        then = then.add(years, 'years');
+
+        $(".add")[0].innerHTML= ` ${addedSoFar += years} `;
+        $(".add").addClass(addedSoFar > 0 ? "green" : "red");
+        $(".add").removeClass(addedSoFar > 0 ? "red" : "green");
+        
+        $(".years").addClass(years > 0 ? "green" : "red");
+        setTimeout(() =>{$(".years").removeClass(years > 0 ? "green" : "red");}, 2000);
+
+        
     }
 
-    function remove1Year(){
-        then = then.add(-1, 'years');
-        $(".add")[0].innerHTML= `+${--addedYears}`;                  
+    function showImage(imageClass, success){
+
+        if(imageClass){
+            $(imageClass).addClass("visible");
+            setTimeout(() =>{$(imageClass).removeClass("visible");}, 4200);
+            return;
+        }
+        
+        var goodImages= [
+            '.good1',           
+            '.good2',
+            '.good3',
+            '.good4',
+            '.good5',
+            '.good6',
+            '.good7',
+            '.good8',
+            '.good9',
+            '.good10',
+        ]
+
+        var badImages= [
+            '.bad1',
+            '.bad2',
+            '.bad3',
+            '.bad4',
+            '.bad5',
+            '.bad6',
+            '.bad7',
+            '.bad8',
+            '.bad9',
+            '.bad10'
+        ]
+
+        if(success){
+            var rand = Math.floor(Math.random() * goodImages.length)
+            $(goodImages[rand]).addClass("visible");
+            setTimeout(() =>{$(goodImages[rand]).removeClass("visible");}, 2000)
+        }
+        else{
+            var rand = Math.floor(Math.random() * badImages.length)
+            $(badImages[rand]).addClass("visible");
+            setTimeout(() =>{$(badImages[rand]).removeClass("visible");}, 2000)
+        }
     }
 
-    function showSuccessImage(){
-        let rand = Math.random()
-        console.log(rand)
-        if(rand < 0.1){
-            $(".harold1").addClass("visible");
-            setTimeout(() =>{$(".harold1").removeClass("visible");}, 2000)
+    function playAudio(audioPath, success){
+        var audio
+        if(audioPath){
+            audio = new Audio(audioPath);
+            audio.play();
+            return
         }
-        if(0.1 < rand && rand < 0.2){
-            $(".harold2").addClass("visible");
-            setTimeout(() =>{$(".harold2").removeClass("visible");}, 2000)
-        }
-        if(0.2 < rand && rand < 0.3){
-            $(".harold3").addClass("visible");
-            setTimeout(() =>{$(".harold3").removeClass("visible");}, 2000)
-        }
-        if(0.3 < rand && rand < 0.4){
-            $(".harold4").addClass("visible");
-            setTimeout(() =>{$(".harold4").removeClass("visible");}, 2000)
-        }
-        if(0.4 < rand && rand < 0.5){
-            $(".harold5").addClass("visible");
-            setTimeout(() =>{$(".harold5").removeClass("visible");}, 2000)
-        }
-        if(0.5 < rand && rand < 0.6){
-            $(".harold6").addClass("visible");
-            setTimeout(() =>{$(".harold6").removeClass("visible");}, 2000)
-        }
-        if(0.6 < rand && rand < 0.7){
-            $(".harold7").addClass("visible");
-            setTimeout(() =>{$(".harold7").removeClass("visible");}, 2000)
-        }
-        if(0.7 < rand && rand < 0.8){
-            $(".harold7").addClass("visible");
-            setTimeout(() =>{$(".harold7").removeClass("visible");}, 2000)
-        }
-    }
+        
+        var goodSounds= [
+            'sfx/good/correct.mp3',
+            'sfx/good/correct2.mp3',
+            'sfx/good/correct3.mp3',
+            'sfx/good/crowd.mp3',
+            'sfx/good/noice.mp3',
+            'sfx/good/ooh.mp3',
+            'sfx/good/yeahh.mp3',
+        ]
 
-    function playAudio(){
+        var badSounds= [
+            'sfx/bad/bruh.mp3',
+            'sfx/bad/buzzer.mp3',
+            'sfx/bad/aww.mp3',
+            'sfx/bad/boo.mp3',
+            'sfx/bad/laugh.mp3',
+            'sfx/bad/losing horn.mp3',
+            'sfx/bad/yoshi.mp3',
+        ]
 
+        if(success){
+            var rand = Math.floor(Math.random() * goodSounds.length)
+            audio = new Audio(goodSounds[rand]);
+        }
+        else{
+            var rand = Math.floor(Math.random() * badSounds.length)
+            audio = new Audio(badSounds[rand]);
+        }
+        
+        audio.play();
     }
 }); 
 

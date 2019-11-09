@@ -25,6 +25,10 @@
   transition: color 0s linear;
   color: #22ec25;
 }
+.red {
+  transition: color 0s linear;
+  color: #FF0000;
+}
 html {
   height: 100%;
   justify-content: center;
@@ -76,10 +80,10 @@ html body .bar .clock .medium {
 ::-webkit-scrollbar {
   display: none;
 }
-.success {
+.hidden {
   opacity: 0;
-  transition: opacity 0.5s ease-in;
-  height: 80%;
+  transition: opacity 0.5s ease-in, height 0.3s ease-in;
+  height: 0%;
   width: auto;
 }
 .diem {
@@ -96,6 +100,7 @@ html body .bar .clock .medium {
 }
 .visible {
   opacity: 1;
+  height: 80%;
 }
 .bottom {
   margin-top: 400px;
