@@ -61,7 +61,7 @@ html body .bar {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 }
-html body .bar .clock {
+.clock {
   opacity: 1;
   display: flex;
   max-width: 100vw;
@@ -71,10 +71,10 @@ html body .bar .clock {
   color: white;
   text-shadow: 5px 5px black;
 }
-html body .bar .clock .big {
+.clock .big {
   font-size: 100px;
 }
-html body .bar .clock .medium {
+.clock .medium {
   font-size: 50px;
 }
 ::-webkit-scrollbar {
@@ -88,8 +88,8 @@ html body .bar .clock .medium {
 }
 .diem {
   position: absolute;
-  bottom: -50px;
-  right: 0;
+  bottom: -30px;
+  right: 4px;
   height: 200px;
 }
 .centered {
@@ -103,11 +103,27 @@ html body .bar .clock .medium {
   height: 80%;
 }
 .bottom {
-  margin-top: 400px;
-  height: 140px !important;
+  margin-top: 445px;
+  height: 200px !important;
 }
 @media screen and (max-width: 630px) {
   .sidebar {
     overflow-x: scroll;
   }
+}
+.hack {
+  top: 35%;
+  left: 20%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in, top 0.2s ease-in;
+}
+.hack-visible {
+  opacity: 1;
+  top: 30%;
+}
+p {
+  margin: 0;
+}
+.hack5 {
+  top: 92%;
 }

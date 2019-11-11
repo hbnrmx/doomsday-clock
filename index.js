@@ -19,7 +19,7 @@ $(document).ready(function(){
         $(document).on('keydown',function(e) {
             if(e.key === "Enter" ) {
                 playAudio('sfx/drumroll.mp3')
-                showImage(Math.random() > 0.5 ? '.drumroll' : '.drumroll2')
+                showImage(Math.random() > 0.33 ? Math.random() > 0.5 ? '.drumroll' : '.drumroll2' : '.drumroll3')
                 setTimeout(() => {
                     if(Math.random() > 0.25){
                         console.log();
@@ -60,7 +60,7 @@ $(document).ready(function(){
         /*calculate doomsday*/
         setInterval(function recalculate(){
             now = moment();
-            timeLeft = moment.duration(then.diff(now))
+            timeLeft = moment.duration(then.diff(now));
             $(".years")[0].innerHTML= `${timeLeft.years()}`;
             $(".months")[0].innerHTML= `${timeLeft.months()}`;
             $(".days")[0].innerHTML= `${timeLeft.days()}`;
@@ -70,7 +70,9 @@ $(document).ready(function(){
         },150)
     
         addedSoFar = 0;
-        $(".add")[0].innerHTML= ` ${addedSoFar} `;
+        $(".add")[0].innerHTML= `${addedSoFar}`;        
+        
+        $(".endsin")[0].innerHTML= `${then.year()}`;
     }
 
     function addYears(years, success){
@@ -84,10 +86,16 @@ $(document).ready(function(){
         $(".add").addClass(addedSoFar > 0 ? "green" : "red");
         $(".add").removeClass(addedSoFar > 0 ? "red" : "green");
         
-        $(".years").addClass(years > 0 ? "green" : "red");
-        setTimeout(() =>{$(".years").removeClass(years > 0 ? "green" : "red");}, 2000);
-
+        $(".years").addClass(years >= 0 ? "green" : "red");
+        setTimeout(() =>{$(".years").removeClass(years > 0 ? "green" : "red");}, 3000);
         
+
+        $(".endsin")[0].innerHTML= ` ${then.year()} `;
+        $(".added")[0].innerHTML= years >= 0 ? `+${years}!` : `${years}`;
+        $(".added").addClass(years > 0 ? "green" : "red");
+        setTimeout(() =>{$(".added").removeClass(years > 0 ? "green" : "red");}, 3000);
+        $(".hack").addClass("hack-visible");
+        setTimeout(() =>{$(".hack").removeClass("hack-visible")}, 3000);   
     }
 
     function showImage(imageClass, success){
@@ -127,12 +135,12 @@ $(document).ready(function(){
         if(success){
             var rand = Math.floor(Math.random() * goodImages.length)
             $(goodImages[rand]).addClass("visible");
-            setTimeout(() =>{$(goodImages[rand]).removeClass("visible");}, 2000)
+            setTimeout(() =>{$(goodImages[rand]).removeClass("visible");}, 3000)
         }
         else{
             var rand = Math.floor(Math.random() * badImages.length)
             $(badImages[rand]).addClass("visible");
-            setTimeout(() =>{$(badImages[rand]).removeClass("visible");}, 2000)
+            setTimeout(() =>{$(badImages[rand]).removeClass("visible");}, 3000)
         }
     }
 
@@ -150,8 +158,7 @@ $(document).ready(function(){
             'sfx/good/correct3.mp3',
             'sfx/good/crowd.mp3',
             'sfx/good/noice.mp3',
-            'sfx/good/ooh.mp3',
-            'sfx/good/yeahh.mp3',
+            'sfx/good/ooh.mp3'
         ]
 
         var badSounds= [

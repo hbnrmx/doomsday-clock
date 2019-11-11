@@ -65,26 +65,26 @@ html {
 			height: 200px;
 			width: 100%;
 			background-color: rgba(0,0,0, 0.6);
-
-			.clock{
-				opacity: 1;
-				display: flex;
-				max-width: 100vw;
-				font-family: 'DSEG7 Classic';
-				font-size: 30px;
-				margin: 0;
-				color: white;
-				text-shadow: 5px 5px black;
-				
-				.big {
-					font-size: 100px;
-				}
-				.medium {
-					font-size: 50px;
-				}
-			}
 		}
 		
+	}
+}
+
+.clock{
+	opacity: 1;
+	display: flex;
+	max-width: 100vw;
+	font-family: 'DSEG7 Classic';
+	font-size: 30px;
+	margin: 0;
+	color: white;
+	text-shadow: 5px 5px black;
+	
+	.big {
+		font-size: 100px;
+	}
+	.medium {
+		font-size: 50px;
 	}
 }
 
@@ -101,8 +101,8 @@ html {
 
 .diem {
 	position: absolute;
-	bottom: -50px;
-	right: 0;
+	bottom: -30px;
+	right: 4px;
 	height: 200px;
 }
 
@@ -119,12 +119,32 @@ html {
 }
 
 .bottom {
-	margin-top:400px;
-	height: 140px !important;
+	margin-top:445px;
+	height: 200px !important;
 }
 
 @media screen and (max-width: 630px){
 	.sidebar{
 		overflow-x: scroll;
 	}
+}
+
+.hack {
+	top: 35%;
+	left: 20%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in, top 0.2s ease-in;
+
+}
+
+.hack-visible {
+	opacity: 1;
+	top: 30%;
+}
+p {
+	margin: 0
+}
+
+.hack5 {
+	top: 92%;
 }

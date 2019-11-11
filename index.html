@@ -5,11 +5,6 @@
         <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="styles.css">
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-        <script src="index.js"></script>
         <title>Doomsday Clock</title>
     </head>
     <body>
@@ -19,6 +14,7 @@
 
         <img src="img/drumroll.gif" class="hidden drumroll centered">
         <img src="img/drumroll2.gif" class="hidden drumroll2 centered">
+        <img src="img/drumroll3.gif" class="hidden drumroll3 centered">
 
         <img src="img/good/1.jpg" class="hidden good1 centered">
         <img src="img/good/2.jpg" class="hidden good2 centered">
@@ -28,7 +24,7 @@
         <img src="img/good/6.jpg" class="hidden good6 centered">
         <img src="img/good/7.png" class="hidden good7 centered">
         <img src="img/good/8.jpg" class="hidden good8 centered">
-        <img src="img/good/9.jpg" class="hidden good9 centered">
+        <img src="img/good/9.gif" class="hidden good9 centered">
         <img src="img/good/10.jpg" class="hidden good10 centered">
 
         <img src="img/bad/1.jpg" class="hidden bad1 centered">
@@ -42,6 +38,9 @@
         <img src="img/bad/9.jpg" class="hidden bad9 centered">
         <img src="img/bad/10.jpg" class="hidden bad10 centered">
 
+        <div class="clock centered hack">
+            <div class="added big red1"></div>
+        </div>
         <div class="bar centered">
             <div class="clock centered">
                 <div class="years big red1"></div> yr5
@@ -52,12 +51,19 @@
                 <div class="seconds big red6"></div> 5ec
             </div>
         </div>
-        <div class="bar centered bottom">
-            <div class="additional clock big">
-                dooM5day off5et by <div class="add medium"></div> yr5
+        <div class="bar centered hack5">
+            <div class="additional clock big" style="padding: 10px">
+            <p>
+                apocalyp5e!off5et!by!<span class="add medium"></span>!yr5 <br><br>
+                VVorld!end5 in!<span class="endsin medium"></span>
+            </p>
             </div>
             <img src="img/diem25.png" class="diem">
         </div>
+        <script src="jquery.js"></script>
+        <script src="parallax.js"></script>
+        <script src="moment.js"></script>
+        <script src="index.js"></script>
         
         <!-- Attributions: 
             Background image by Jacqueline Hardy (https://pixy.org/4870246/) (2019-06-18)
