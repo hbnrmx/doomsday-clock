@@ -60,6 +60,18 @@ $(document).ready(function(){
                 addYears(-1);
             }
 
+            if(e.key === "ArrowLeft" ) {
+                $(".shots")[0].innerHTML= ` ${--shotsSoFar} `;
+                $(".shots").addClass(shotsSoFar > 0 ? "green" : "red");
+                $(".shots").removeClass(shotsSoFar > 0 ? "red" : "green");
+            }  
+
+            if(e.key === "ArrowRight" ) {
+                $(".shots")[0].innerHTML= ` ${++shotsSoFar} `;
+                $(".shots").addClass(shotsSoFar > 0 ? "green" : "red");
+                $(".shots").removeClass(shotsSoFar > 0 ? "red" : "green");
+            }
+
             if(e.key === "p" ) {
                 globalAudio.paused ? globalAudio.play() : globalAudio.pause()
             }
