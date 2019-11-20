@@ -75,6 +75,9 @@ $(document).ready(function(){
             if(e.key === "p" ) {
                 globalAudio.paused ? globalAudio.play() : globalAudio.pause()
             }
+            if(e.key === "0" ) {
+                globalAudio.currentTime = 0;
+            }
             if(e.key === "r" ) {
                 rigged = !rigged;
                 console.log('rigged')
