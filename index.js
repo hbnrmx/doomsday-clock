@@ -2,8 +2,11 @@ $(document).ready(function(){
     var then = moment('2025-01-01 00:00:00');
     var now;
     var timeLeft;
-    var addedSoFar;
-    
+    var addedSoFar = 0;
+    var shotsSoFar = 0;
+    var rigged = false;
+    var globalAudio = new Audio('sfx/priceIsRight.mp3');
+
     initParallax();
     initKeydownListener();
     calculateDoomsday();
@@ -19,9 +22,18 @@ $(document).ready(function(){
         $(document).on('keydown',function(e) {
             if(e.key === "Enter" ) {
                 playAudio('sfx/drumroll.mp3')
-                showImage(Math.random() > 0.33 ? Math.random() > 0.5 ? '.drumroll' : '.drumroll2' : '.drumroll3')
+
+                var drumrolls = [
+                    '.drumroll1',
+                    '.drumroll2',
+                    '.drumroll3',
+                    '.drumroll4',
+                    '.drumroll5'
+                ];
+                var rand = Math.floor(Math.random() * drumrolls.length);
+                showImage(drumrolls[rand]);
                 setTimeout(() => {
-                    if(Math.random() > 0.25){
+                    if(Math.random() > 0.25 || rigged == true){
                         console.log();
                         playAudio(null, success = true);
                         showImage(null, success = true);
@@ -48,11 +60,13 @@ $(document).ready(function(){
                 addYears(-1);
             }
 
-            if(e.key === "P" ) {
-                playAudio('sfx/priceIsRight.mp3')
+            if(e.key === "p" ) {
+                globalAudio.paused ? globalAudio.play() : globalAudio.pause()
             }
-            
-
+            if(e.key === "r" ) {
+                rigged = !rigged;
+                console.log('rigged')
+            }
         });
     }
     
@@ -71,6 +85,7 @@ $(document).ready(function(){
     
         addedSoFar = 0;
         $(".add")[0].innerHTML= `${addedSoFar}`;        
+        $(".shots")[0].innerHTML= `${shotsSoFar}`;        
         
         $(".endsin")[0].innerHTML= `${then.year()}`;
     }
@@ -85,6 +100,10 @@ $(document).ready(function(){
         $(".add")[0].innerHTML= ` ${addedSoFar += years} `;
         $(".add").addClass(addedSoFar > 0 ? "green" : "red");
         $(".add").removeClass(addedSoFar > 0 ? "red" : "green");
+        
+        $(".shots")[0].innerHTML= ` ${++shotsSoFar} `;
+        $(".shots").addClass(shotsSoFar > 0 ? "green" : "red");
+        $(".shots").removeClass(shotsSoFar > 0 ? "red" : "green");
         
         $(".years").addClass(years >= 0 ? "green" : "red");
         setTimeout(() =>{$(".years").removeClass(years > 0 ? "green" : "red");}, 3000);
@@ -148,7 +167,7 @@ $(document).ready(function(){
         var audio
         if(audioPath){
             audio = new Audio(audioPath);
-            audio.play();
+            audio.paused ? audio.play() : audio.pause();
             return
         }
         
